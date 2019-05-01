@@ -2,7 +2,7 @@ const removeMiddle = require("./remove-middle");
 
 test("Remove middle", function() {
   const words = ["mouse", "giraffe", "queen", "window", "bottle"];
-
+  
   const expectedWords = ["mouse", "giraffe", "window", "bottle"];
   const expectedOutput = ["queen"];
 
