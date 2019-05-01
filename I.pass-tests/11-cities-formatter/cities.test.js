@@ -1,7 +1,7 @@
-var formatCities = require("./cities");
+const formatCities = require("./cities");
 
 test("Cities", function() {
-  var capitals = [
+  const capitals = [
     { city: "Paris", country: "France" },
     { city: "Madrid", country: "Spain" },
     { city: "Rome", country: "Italy" }
@@ -11,13 +11,13 @@ test("Cities", function() {
     return `${city} is the capital of ${country}`;
   }
 
-  var expected = [
+  const expected = [
     "Paris is the capital of France",
     "Madrid is the capital of Spain",
     "Rome is the capital of Italy"
   ];
 
-  var result = formatCities(capitals, transform);
+  const result = formatCities(capitals, transform);
 
   expect(result).toEqual(expected);
 });
