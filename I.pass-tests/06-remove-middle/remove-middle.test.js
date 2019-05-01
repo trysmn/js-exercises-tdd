@@ -1,12 +1,12 @@
-var removeMiddle = require("./remove-middle");
+const removeMiddle = require("./remove-middle");
 
 test("Remove middle", function() {
-  var words = ["mouse", "giraffe", "queen", "window", "bottle"];
+  const words = ["mouse", "giraffe", "queen", "window", "bottle"];
 
-  var expectedWords = ["mouse", "giraffe", "window", "bottle"];
-  var expectedOutput = ["queen"];
+  const expectedWords = ["mouse", "giraffe", "window", "bottle"];
+  const expectedOutput = ["queen"];
 
-  var output = removeMiddle(words);
+  const output = removeMiddle(words);
 
   expect(output).toEqual(expectedOutput);
   expect(words).toEqual(expectedWords);
