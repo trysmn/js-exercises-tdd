@@ -4,7 +4,15 @@ const {
   combineArrays,
   destructuring,
   templateString
-} = require("./index");
+} = require("./es6");
+
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const testObj = {
+  cyf: "awesome",
+  test: "100%",
+  learning: "always"
+};
 
 test("function arrow is instance of a function", () => {
   expect(arrow).toBeInstanceOf(Function);
@@ -34,10 +42,3 @@ test("templateString should return a string with the sum of parameter a and b", 
   expect(templateString(1, 2)).toEqual("The sum is equal to 3");
 });
 
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-const testObj = {
-  cyf: "awesome",
-  test: "100%",
-  learning: "always"
-};
