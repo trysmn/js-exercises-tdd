@@ -1,10 +1,9 @@
-var removeVowels = require("../02-remove-vowels/remove-vowels");
+const removeVowels = require("../02-remove-vowels/remove-vowels");
 
-function removeVowelsForWords(words) {
-  var result = words.map(function(word) {
+function removeVowelsForWords(wordsArray) {
+  const result = wordsArray.map(function(word) {
     return removeVowels(word);
   });
-
   return result;
 }
 
