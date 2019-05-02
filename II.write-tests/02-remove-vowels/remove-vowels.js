@@ -20,8 +20,6 @@ function removeVowels(word) {
   return result.join("");
 }
 
-console.log(removeVowels("samuel"));
-
 module.exports = removeVowels;
 
 /*
