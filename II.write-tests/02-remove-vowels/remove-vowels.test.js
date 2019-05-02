@@ -8,5 +8,5 @@ test("remove vowels from word", function() {
   const result = removeVowels(word);
 
   // Assert
-  expect(result).toEqual("s_m__l");
+  expect(result).toEqual("sml");
 });
