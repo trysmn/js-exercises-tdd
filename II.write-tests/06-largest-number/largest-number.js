@@ -1,7 +1,7 @@
 function getLargestNumber(array) {
-  var largestNumber;
-  for (var i = 0; i < array.length - 1; i++) {
-    if (array[i] > array[i + 1]) {
+  let largestNumber = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (i === array.length - 1 || array[i] > array[i + 1]) {
       largestNumber = array[i];
     }
   }
