@@ -59,5 +59,17 @@ describe("String Calculator", () => {
 
         // Assert
         expect(result).toEqual(expectedOutput);
-    });
+    }),
+
+    test("should ignore numbers larger than 1000 in the input string", () => {
+        // Arrange
+        const inputString = `\n1\n20000\n3`;
+        const expectedOutput = 4;
+
+        // Act
+        const result = stringCalculator(inputString);
+
+        // Assert
+        expect(result).toEqual(expectedOutput);
+    })
 });

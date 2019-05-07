@@ -18,7 +18,9 @@ function stringCalculator(stringOfNumbers) {
             return `Negative numbers not allowed: ${exceptionsArray}`;
         } else {
             numbersArray.map((element) => {
-                count += parseInt(element);
+                if (parseInt(element) <= 1000) {
+                    count += parseInt(element);
+                }
             })
             return count;
         }
