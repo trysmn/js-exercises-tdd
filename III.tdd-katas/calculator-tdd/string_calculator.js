@@ -4,17 +4,24 @@ function stringCalculator(stringOfNumbers) {
     } else if (typeof stringOfNumbers !== 'string') {
         return Error("Invalid argument type");
     } else {
-        if (stringOfNumbers.includes("\n")) {
-            delimiter = "\n";
-        } else {
-            delimiter = ",";
-        }
-        const numbersArray = stringOfNumbers.split(delimiter);
+        delimiter = stringOfNumbers.split("")[0];
+        let numbersArray = stringOfNumbers.split(delimiter);
+        numbersArray.shift(0);
         let count = 0;
-        numbersArray.map((element) => {
-            count += parseInt(element);
-        });
-        return count;
+        let exceptionsArray = [];
+        if (stringOfNumbers.includes("-")) {
+            numbersArray.map((element) => {
+                if (parseInt(element) < 0) {
+                    exceptionsArray.push(parseInt(element));
+                }
+            })
+            return `Negative numbers not allowed: ${exceptionsArray}`;
+        } else {
+            numbersArray.map((element) => {
+                count += parseInt(element);
+            })
+            return count;
+        }
     }
 }
 

@@ -27,7 +27,7 @@ describe("String Calculator", () => {
 
     test("should return the sum of all numbers given in the input string given comma is delimiter", () => {
         // Arrange
-        const inputString = "1,2,3";
+        const inputString = ",1,2,3";
         const expectedOutput = 6;
 
         // Act
@@ -39,8 +39,20 @@ describe("String Calculator", () => {
 
     test("should return the sum of all numbers given in the input string given new line is delimiter", () => {
         // Arrange
-        const inputString = `1\n2\n3`;
+        const inputString = `\n1\n2\n3`;
         const expectedOutput = 6;
+
+        // Act
+        const result = stringCalculator(inputString);
+
+        // Assert
+        expect(result).toEqual(expectedOutput);
+    }),
+
+    test("should throw an exception with an error message displaying invalid inputs when negative numbers are given", () => {
+        // Arrange
+        const inputString = `\n1\n-2\n-3`;
+        const expectedOutput = "Negative numbers not allowed: -2,-3";
 
         // Act
         const result = stringCalculator(inputString);
