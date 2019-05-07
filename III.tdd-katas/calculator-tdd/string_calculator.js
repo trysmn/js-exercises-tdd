@@ -4,7 +4,12 @@ function stringCalculator(stringOfNumbers) {
     } else if (typeof stringOfNumbers !== 'string') {
         return Error("Invalid argument type");
     } else {
-        const numbersArray = stringOfNumbers.split(",");
+        if (stringOfNumbers.includes("\n")) {
+            delimiter = "\n";
+        } else {
+            delimiter = ",";
+        }
+        const numbersArray = stringOfNumbers.split(delimiter);
         let count = 0;
         numbersArray.map((element) => {
             count += parseInt(element);

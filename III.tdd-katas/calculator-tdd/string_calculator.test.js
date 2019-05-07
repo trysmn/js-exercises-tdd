@@ -25,9 +25,21 @@ describe("String Calculator", () => {
         expect(result).toEqual(expectedOutput);
     }),
 
-    test("should return the sum of all numbers given in the input string", () => {
+    test("should return the sum of all numbers given in the input string given comma is delimiter", () => {
         // Arrange
         const inputString = "1,2,3";
+        const expectedOutput = 6;
+
+        // Act
+        const result = stringCalculator(inputString);
+
+        // Assert
+        expect(result).toEqual(expectedOutput);
+    }),
+
+    test("should return the sum of all numbers given in the input string given new line is delimiter", () => {
+        // Arrange
+        const inputString = `1\n2\n3`;
         const expectedOutput = 6;
 
         // Act
