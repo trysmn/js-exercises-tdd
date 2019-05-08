@@ -59,5 +59,17 @@ describe("Password Verifier", () => {
 
         // Assert
         expect(result).toEqual(errorMessage);
+    }),
+
+    test("should accept a password of length 9 characters or more, has at least one upper case and one lower case letter and one number.", () => {
+        // Arrange
+        const inputPassword = "secretPa1";
+        const successMessage = "Password verified!"
+
+        // Act
+        const result = passwordVerifier.verify(inputPassword);
+
+        // Assert
+        expect(result).toEqual(successMessage);
     })
 })

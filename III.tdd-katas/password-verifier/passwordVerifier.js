@@ -15,6 +15,8 @@ class passwordVerifier {
         } else if (/\d/.test(passwordString) === false) {
             let errorMessage = "Password must have at least one number.";
             return Error(errorMessage);
+        } else {
+            return "Password verified!";
         }
     }
 }
