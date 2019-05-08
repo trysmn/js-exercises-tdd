@@ -3,14 +3,17 @@ class passwordVerifier {
         if (passwordString === null) {
             let errorMessage = "Password cannot be be null";
             return Error(errorMessage);
-        } else if (passwordString.length > 8) {
-            let errorMessage = "Password length is too long! Please no more than 8 characters.";
+        } else if (passwordString.length < 9) {
+            let errorMessage = "Password length is too short! Please make it 9 characters or more.";
             return Error(errorMessage);
         } else if (passwordString === passwordString.toLowerCase()) {
             let errorMessage = "Password must have at least one upper case letter.";
             return Error(errorMessage);
         } else if (passwordString === passwordString.toUpperCase()) {
             let errorMessage = "Password must have at least one lower case letter.";
+            return Error(errorMessage);
+        } else if (/\d/.test(passwordString) === false) {
+            let errorMessage = "Password must have at least one number.";
             return Error(errorMessage);
         }
     }

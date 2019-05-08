@@ -1,10 +1,10 @@
 const passwordVerifier = require('./passwordVerifier');
 
 describe("Password Verifier", () => {
-    test("should not accept a password longer than 8 characters", () => {
+    test("should not accept a password shorter than 9 characters", () => {
         // Arrange
-        const inputPassword = "secretPassword";
-        const errorMessage = new Error("Password length is too long! Please no more than 8 characters.");
+        const inputPassword = "secret";
+        const errorMessage = new Error("Password length is too short! Please make it 9 characters or more.");
 
         // Act
         const result = passwordVerifier.verify(inputPassword);
@@ -27,7 +27,7 @@ describe("Password Verifier", () => {
 
     test("should not accept a password that does not have at least one upper case letter", () => {
         // Arrange
-        const inputPassword = "secret";
+        const inputPassword = "secretpassword";
         const errorMessage = new Error("Password must have at least one upper case letter.");
 
         // Act
@@ -39,7 +39,7 @@ describe("Password Verifier", () => {
 
     test("should not accept a password that does not have at least one lower case letter", () => {
         // Arrange
-        const inputPassword = "SECRET";
+        const inputPassword = "SECRETPASSWORD";
         const errorMessage = new Error("Password must have at least one lower case letter.");
 
         // Act
@@ -47,5 +47,17 @@ describe("Password Verifier", () => {
 
         // Assert
         expect(result).toEqual(errorMessage);
-    });
+    }),
+
+    test("should not accept a password that does not have at least one number", () => {
+        // Arrange
+        const inputPassword = "SecretPassword";
+        const errorMessage = new Error("Password must have at least one number.");
+
+        // Act
+        const result = passwordVerifier.verify(inputPassword);
+
+        // Assert
+        expect(result).toEqual(errorMessage);
+    })
 })
