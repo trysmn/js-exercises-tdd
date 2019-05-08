@@ -23,5 +23,17 @@ describe("Old Roman Numeral Calculator", () => {
 
         // Assert
         expect(result).toEqual(expectedOutput);
+    }),
+
+    test("should reject an input that is not a number", () => {
+        // Arrange
+        const inputNum = "23";
+        const expectedOutput = Error("Argument must be a number");
+
+        // Act
+        const result = convertToOldRoman(inputNum);
+
+        // Assert
+        expect(result).toEqual(expectedOutput);
     });
 })
