@@ -6,19 +6,7 @@ function convertToOldRoman(integer) {
     } else if (!isArgumentTheCorrectType(integer)) {
         return Error("Argument must be a number");
     } else {
-        let oldRomanString = "";
-        let updatedInteger = integer;
-        let largestDenominationThatMakesUpInteger;
-        let multipleOfDenomination;
-
-        while (updatedInteger > 0) {
-            largestDenominationThatMakesUpInteger = findLargestDenominationThatMakesUpInteger(updatedInteger);
-            multipleOfDenomination = howManyOfDenomination(updatedInteger, largestDenominationThatMakesUpInteger);
-            oldRomanString = addToOldRomanString(oldRomanString, multipleOfDenomination, largestDenominationThatMakesUpInteger);
-            updatedInteger = updatedInteger - (denominationsHash[largestDenominationThatMakesUpInteger] * multipleOfDenomination);
-        }
-        
-        return oldRomanString;
+        return calculateOldRomanString(integer);
     }
 }
 
@@ -30,22 +18,58 @@ function isArgumentTheCorrectType(integer) {
     return (typeof integer === 'number');
 }
 
+function calculateOldRomanString(integer) {
+    let oldRomanString = "";
+    let updatedInteger = integer;
+    let largestDenominationThatMakesUpInteger;
+    let multipleOfDenomination;
+    
+    while (updatedInteger > 0) {
+        largestDenominationThatMakesUpInteger = findLargestDenominationThatMakesUpInteger(updatedInteger);
+        multipleOfDenomination = howManyOfDenomination(updatedInteger, largestDenominationThatMakesUpInteger);
+        oldRomanString = addToOldRomanString(oldRomanString, multipleOfDenomination, largestDenominationThatMakesUpInteger);
+        updatedInteger -= updateValueOfInteger(largestDenominationThatMakesUpInteger, multipleOfDenomination);
+    }
+    
+    return oldRomanString;
+}
+
 function findLargestDenominationThatMakesUpInteger(integer) {
     for (let denominationIndex in denominationsArray) {
-        if (integer - denominationsHash[denominationsArray[denominationsArray.length - 1]] >= 0) {
-            return denominationsArray[denominationsArray.length - 1];
-        } else if (integer - denominationsHash[denominationsArray[denominationIndex]] < 0) {
-            return denominationsArray[denominationsArray.indexOf(denominationsArray[denominationIndex]) - 1];
+        if (isIntegerLargerThan1000(integer)) {
+            return largestDenominationPossible();
+        } else if (isIntegerLargerThanCurrentDenomination(integer, denominationIndex)) {
+            return largestDenominationThatIsSmallerThanInteger(denominationIndex);
         }
     }
 }
 
+function largestDenominationThatIsSmallerThanInteger(denominationIndex) {
+    return denominationsArray[denominationsArray.indexOf(denominationsArray[denominationIndex]) - 1];
+}
+
+function largestDenominationPossible() {
+    return denominationsArray[denominationsArray.length - 1]
+}
+
+function isIntegerLargerThanCurrentDenomination(integer, denominationIndex) {
+    return (integer - denominationsHash[denominationsArray[denominationIndex]] < 0);
+}
+
+function isIntegerLargerThan1000(integer) {
+    return (integer - denominationsHash[denominationsArray[denominationsArray.length - 1]] >= 0);
+}
+
 function howManyOfDenomination(integer, denomination) {
     let denominationCount = 1;
-    while (integer - (denominationsHash[denomination] * denominationCount) >= 0) {
+    while (isMultipleOfDenominationLessThanInteger(integer, denomination, denominationCount)) {
         denominationCount += 1;
     }
     return denominationCount - 1;
+}
+
+function isMultipleOfDenominationLessThanInteger(integer, denomination, denominationCount) {
+    return (integer - (denominationsHash[denomination] * denominationCount) >= 0);
 }
 
 function addToOldRomanString(oldRomanString, multipleOfDenomination, largestDenominationThatMakesUpInteger) {
@@ -53,6 +77,10 @@ function addToOldRomanString(oldRomanString, multipleOfDenomination, largestDeno
         oldRomanString = oldRomanString + largestDenominationThatMakesUpInteger;
     }
     return oldRomanString;
+}
+
+function updateValueOfInteger(largestDenominationThatMakesUpInteger, multipleOfDenomination) {
+    return (denominationsHash[largestDenominationThatMakesUpInteger] * multipleOfDenomination);
 }
 
 module.exports = { convertToOldRoman, findLargestDenominationThatMakesUpInteger, howManyOfDenomination };
