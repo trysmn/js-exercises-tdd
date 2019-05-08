@@ -23,5 +23,29 @@ describe("Password Verifier", () => {
 
         // Assert
         expect(result).toEqual(errorMessage);
+    }),
+
+    test("should not accept a password that does not have at least one upper case letter", () => {
+        // Arrange
+        const inputPassword = "secret";
+        const errorMessage = new Error("Password must have at least one upper case letter.");
+
+        // Act
+        const result = passwordVerifier.verify(inputPassword);
+
+        // Assert
+        expect(result).toEqual(errorMessage);
+    }),
+
+    test("should not accept a password that does not have at least one lower case letter", () => {
+        // Arrange
+        const inputPassword = "SECRET";
+        const errorMessage = new Error("Password must have at least one lower case letter.");
+
+        // Act
+        const result = passwordVerifier.verify(inputPassword);
+
+        // Assert
+        expect(result).toEqual(errorMessage);
     });
 })
