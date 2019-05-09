@@ -53,6 +53,17 @@ Eventually, the Romans changed systems.  Now, putting a smaller numeral before a
 
 We're going to write a second method so that will return modern Roman Numerals. We'll most likely use some similar logic as in the first function.
 
+To avoid ambiguity, the only pairs of numerals that use this subtraction rule are: (i.e. 4 x 10^{n} and 9 x 10^{n} for n = 0,1,2,...).
+
+| Arabic Number | Roman Numeral |
+| ------------- | ------------- |
+| 4             | IV            |
+| 9             | IX            |
+| 40            | XL            |
+| 90            | XC            |
+| 400           | CD            |
+| 900           | CM            |
+
 ```javascript
 convertToOldRoman(4)
  => "IIII"
